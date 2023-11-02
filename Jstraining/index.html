@@ -8,18 +8,22 @@
 </head>
 <body>
     <div class="alert-box" id="alert">
-        알림창임
+        <p id ="alertText">아이디 입력하세요</p>
+        <button onclick="openAlert('none')">닫기</button>
     </div>
     <button onclick="openAlert('block')">버튼</button>
-    <button onclick="openAlert('none')">닫기</button>
+    <button onclick="changeText('block')">버튼</button>
 
     <script>
          function openAlert(e){
+            document.getElementById('alertText').innerHTML ="아이디 입력하세요"
             document.getElementById('alert').style.display =e;
         }
-
-
-
+        
+        function changeText(a){
+            document.getElementById('alertText').innerHTML ="비번 입력하세요"
+            document.getElementById('alert').style.display =a; 
+        }
         // function closeAlert(s){
         //     document.getElementById('alert').style.display =s;
         // }
