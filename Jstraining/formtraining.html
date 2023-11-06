@@ -16,10 +16,18 @@
     <div class="black-bg ">
         <div class="white-bg ">
             <h4>로그인하세요</h4>
-            <button class="btn btn-danger" id="close">닫기</button>
+            <form action="success.html">
+                <div class="my-3">
+                    <input type="text" class="form-control">
+                </div>
+                <div class="my-3">
+                    <input type="password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">전송</button>
+                <button type="button" class="btn btn-danger" id="close">닫기</button>
+            </form>
         </div>
     </div>
-    <button type="button" class="btn btn-primary">Primary</button>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <span class="navbar-brand">Navbar</span>
@@ -35,20 +43,23 @@
         <li class="list-group-item">A fourth item</li>
         <li class="list-group-item">And a fifth one</li>
     </ul>
-    <button id="test-btn">로그인</button>
+    <div class="main-bg">
+        <h4>Shirts on Sale</h4>
+        <button id="login" class="btn btn-danger">로그인</button>
+    </div>
     <script>
         // querySelector = 맨위 나오는 한개만 찾아줌
         // ex) list-group-item 들중 맨위 An item 클래스만 찾아줌
         // 그래서 querySelectorAll 을 쓰면 전부 사용가능 
         // qerySelectorAll('')[0~4].~~~
         // document.querySelector('.hello').innerHTML = '바보';
-        $('#test-btn').on('click', function () {
+        $('#login').on('click', function () {
             $('.black-bg').addClass('show-modal');
         });
         $('#close').on('click', function () {
             $('.black-bg').removeClass('show-modal');
         });
-        
+
 
         document.querySelector('.navbar-toggler').addEventListener('click', function () {
             document.querySelector('.list-group').classList.toggle('show');
