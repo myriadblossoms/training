@@ -23,7 +23,34 @@
             </button>
         </div>
     </nav>
-    <div style="height: 1000px;">
+    <div style="height: 1000px;"></div>
+
+    <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium exercitationem.
+      </div> 
+    <div style="height: 10000px;">
 
     </div>
+    <script>
+        window.addEventListener('scroll', function(){
+            var scroll100 = window.scrollY;
+            var font = document.querySelector('.navbar-brand')
+           
+            if(scroll100 > '100'){
+                font.style.fontSize = '10px'
+            }else {
+                font.style.fontSize = '30px'
+            }
+           
+        });
+        $('.lorem').on('scroll',function(){
+            var 스크롤양 = document.querySelector('.lorem').scrollTop;
+            var 실제높이 = document.querySelector('.lorem').scrollHeight;
+            var 높이 = document.querySelector('.lorem').clientHeight;
+            if(스크롤양 + 높이 == 실제높이){
+                alert('good')
+            }
+        })
+
+    </script>
 </body>

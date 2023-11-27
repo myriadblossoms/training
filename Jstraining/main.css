@@ -3,6 +3,10 @@
     width: 100%;
     z-index: 5;
 }
+.navbar-brand{
+    font-size:25px;
+    transition: all 1s;
+}
 .alert-box{
     background-color: skyblue;
     padding: 20px;
