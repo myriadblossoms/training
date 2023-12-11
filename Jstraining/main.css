@@ -96,3 +96,6 @@ ul.list {
 .form-hide{
     display: none;
 }
+.hidden{
+    display: none !important;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>장바구니 페이지</div>
+    <div class="cart">
+
+    </div>
+   
+    <script>
+        var 꺼낸거 = JSON.parse(localStorage.cart);
+        // for(i = 0; i <꺼낸거.length; i ++){
+        //     var 상품 = `<p>${꺼낸거[i]}</p>`
+        //     document.querySelector('.cart').insertAdjacentHTML('beforeend',상품)
+        // }
+
+        꺼낸거.forEach((a,i) => {
+            var 상품 = `<p>${꺼낸거[i]}</p>`
+            if ()
+            document.querySelector('.cart').insertAdjacentHTML('beforeend',상품)
+        });
+        // 로컬스토리지에서 cart 꺼내주새요
+        // array 만큼 p 생성해주세요
+    </script>
+</body>
+
+</html>

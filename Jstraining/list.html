@@ -1,51 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="card-group container">
-        <div class="card">
-          <img src="https://via.placeholder.com/600">
-          <div class="card-body">
-            <h5>Card title</h5>
-            <p>가격 : 70000</p>
-            <button class="btn btn-danger">주문하기</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/600">
-          <div class="card-body">
-            <h5>Card title</h5>
-            <p>가격 : 70000</p>
-            <button class="btn btn-danger">주문하기</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/600">
-          <div class="card-body">
-            <h5>Card title</h5>
-            <p>가격 : 70000</p>
-            <button class="btn btn-danger">주문하기</button>
-          </div>
-        </div>
-      </div>
-      
-      <script>
-        var products = [
-          { id : 0, price : 70000, title : 'Blossom Dress' },
-          { id : 1, price : 50000, title : 'Springfield Shirt' },
-          { id : 2, price : 60000, title : 'Black Monastery' }
-        ];
-      </script> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="tab.js"></script>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="main.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <img src="https://via.placeholder.com/600" class="w-100">
+        <h5>Card title</h5>
+        <p>가격 : 70000</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <button class="btn btn-danger"> 더보기</button>
+  </div>
+  <div class="container">
+    <button class="btn btn-danger my-3" id="pricebtn"> 가격정렬</button>
+  </div>
+  <div class="container">
+    <button class="btn btn-danger" id="sort1"> 다나가순정렬</button>
+  </div>
+  <script>
+    var products = [
+      { id: 0, price: 70000, title: 'Blossom Dress' },
+      { id: 1, price: 50000, title: 'Springfield Shirt' },
+      { id: 2, price: 60000, title: 'Black Monastery' }
+    ];
+
+
+    $('#sort1').click(function () {
+      products.sort(function (a, b) {
+        if (a.title < b.title) {
+          return 1
+        } else {
+          return -1
+        }
+      });
+      $('row').html('');
+
+      products.forEach((a, i)=> {
+        var 탬플릿 =
+          `<div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100">
+          <h5>${products[i].title}</h5>
+          <p>가격 : ${products[i].price}</p>
+        </div>`;
+      $('row').append(탬플릿)
+      })
+    });
+
+
+
+    products.sort(function (a, b) {
+      return a.price - b.price
+    })
+    console.log(products)
+
+    // var 어레이 =[7,3,5,2,40];
+    // var 어레이2 =['a','c','b','d']
+    // 어레이.sort(function(a,b){
+    //   return a - b;
+    // });
+    // 어레이2.sort()
+    // console.log(어레이);
+    // console.log(어레이2)
+
+    // var count = 0;
+    // $('.btn').on('click', function () {
+    //   count++
+    //   if (count <= 2) {
+    //     $.get('https://codingapple1.github.io/js/more1.json').done((data) => {
+    //       data.forEach((a) => {
+    //         var 탬플릿 =
+    //           `<div class="col-sm-4">
+    //           <img src="https://via.placeholder.com/600" class="w-100">
+    //           <h5>${a.title}</h5>
+    //           <p>가격 : ${a.price}</p>
+    //         </div>`
+    //         $('.row').append(탬플릿);
+    //       });
+    //     })
+    //   }
+
+    //   else if (count === 3) {
+    //     $.get('https://codingapple1.github.io/js/more2.json').done((data) => {
+    //       data.forEach((a) => {
+    //         var 탬플릿 =
+    //           `<div class="col-sm-4">
+    //             <img src="https://via.placeholder.com/600" class="w-100">
+    //             <h5>${a.title}</h5>
+    //             <p>가격 : ${a.price}</p>
+    //         </div>`
+    //         $('.row').append(탬플릿);
+    //         $('.btn').addClass('hidden')
+    //       });
+    //     })
+    //   }
+    // });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="tab.js"></script>
 </body>
+
 </html>
