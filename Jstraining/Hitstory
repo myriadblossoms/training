@@ -2,3 +2,7 @@
 2023/11/02 Git hub test upload & java script traning start.
 
 2023/11/06 bootstrap traning + queryselector study
+
+2023/12/12 배열값 중복은
+includes 로 이미 db에 있는지도 확인가능
+[...new Set] 을이용해 걸러낼수있다

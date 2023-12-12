@@ -142,7 +142,11 @@
             var title = $(e.target).siblings('h5').text();
             if( localStorage.getItem('cart') != null){
                 var 꺼낸거 = JSON.parse(localStorage.cart);
-                꺼낸거.push(title);
+                if(꺼낸거.includes(title)){
+                    alert('이미있슈')
+                }else{
+                    꺼낸거.push(title);
+                }
                 localStorage.setItem('cart',JSON.stringify(꺼낸거));
             }else{
                 localStorage.setItem('cart',JSON.stringify([title]));

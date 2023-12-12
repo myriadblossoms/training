@@ -19,14 +19,14 @@
         //     var 상품 = `<p>${꺼낸거[i]}</p>`
         //     document.querySelector('.cart').insertAdjacentHTML('beforeend',상품)
         // }
-
-        꺼낸거.forEach((a,i) => {
-            var 상품 = `<p>${꺼낸거[i]}</p>`
-            if ()
+        var 중복없는상품 = [...new Set(꺼낸거)]
+        중복없는상품.forEach((a,i) => {
+            var 상품 = `<p>${a}</p>`
             document.querySelector('.cart').insertAdjacentHTML('beforeend',상품)
         });
         // 로컬스토리지에서 cart 꺼내주새요
         // array 만큼 p 생성해주세요
+        
     </script>
 </body>
 
