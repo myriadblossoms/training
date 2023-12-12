@@ -1,1 +1,13 @@
+nodemon err
+1.widows powershell 검색 관리자로실행
 
+2. get-ExecutionPolicy로 현재 권한상태를 확인한다
+    (RemoteSigned 상태가 아니라면 스크립트 실행이 되지 않는다. 나는 Restricted 상태라서 실행이 되지 않았다.)
+
+3. 권한 상태를 "RemoteSigned"으로 변경한다
+> Set-ExecutionPolicy RemoteSigned
+> y
+
+4. get-ExecutionPolicy로 권한이 잘 변경되었는지 확인한다
+
+5.vscode 로 돌아와서 확인
