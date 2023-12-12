@@ -6,5 +6,13 @@ app.listen(8080, () => {
 })
 
 app.get('/', (요청, 응답) => {
-  응답.send('반갑다')
+  응답.sendFile(__dirname + '/index.html')
 }) 
+
+app.get('/about', (요청, 응답) => {
+    응답.sendFile(__dirname + '/about.html')
+  }) 
+
+  app.get('/shop', (요청, 응답) => {
+    응답.send('쇼핑페이지입니다')
+  }) 
