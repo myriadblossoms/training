@@ -6,7 +6,7 @@ app.set('view engine','ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-const { MongoClient } = require('mongodb')
+const { MongoClient, ObjectId } = require('mongodb')
 
 let db
 const url = 'mongodb+srv://admin:qwer1234@cluster0.sbjd9rw.mongodb.net/?retryWrites=true&w=majority'
@@ -70,3 +70,10 @@ app.get('/about', (요청, 응답) => {
       응답.status(500).send('서버에러')
     }
   }) 
+
+
+  app.get('/detail/:id', async(요청,응답) => {
+    let answer = await db.collection('post').findOne({ _id : new ObjectId(요청.params.id)})
+    응답.render('detail.ejs',{ 게시글 : answer})
+  })
+  
