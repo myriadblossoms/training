@@ -11,3 +11,11 @@ nodemon err
 4. get-ExecutionPolicy로 권한이 잘 변경되었는지 확인한다
 
 5.vscode 로 돌아와서 확인
+
+
+eaddrinuse err 대응
+1.netstat -ano | findstr [portno]
+
+2.taskkill /pid ???  이문법이 안되면
+
+3.taskkill /f /pid ????로
