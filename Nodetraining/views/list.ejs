@@ -9,16 +9,31 @@
 <body class="grey-bg">
 
     <%- include('nav.ejs')%>
-
 <div class="white-bg">
-    <% for(let i = 0; i < 글목록.length; i++){%>
+    <% for(let i = 0; i < 글목록.length; i++){ %>
         <div class="list-box">
-            <h4><%= 글목록[i].title  %></h4>
+            <h4><a href="/detail/<%= 글목록[i]._id %>"><%= 글목록[i].title  %></a>
+            <a href="/edit/<%= 글목록[i]._id %>">✏️</a>
+            <span class="delete" data-id="<%= 글목록[i]._id %>">🗑️</span>
+        </h4>
             <p><%= 글목록[i].content  %></p>
-          </div>
+         </div>
    <% }%>
  
-
+<script>
+    for(let i=0; i < '<$= 글목록.length %>'; i++){
+    document.querySelectorAll('.delete')[i].addEventListener('click', function(e){
+        fetch('/delete?docid='+e.target.dataset.id,{
+            method : 'DELETE'
+        })
+        .then((r) => r.text())
+        .then((r) =>{console.log(r)
+        
+        })
+    })
+    }
+ 
+</script>
 
 </div> 
 </body>
