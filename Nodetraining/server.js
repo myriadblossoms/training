@@ -8,6 +8,19 @@ app.set('view engine','ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
+const session = require('express-session')
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+
+app.use(passport.initialize())
+app.use(session({
+  secret: '암호화에 쓸 비번',
+  resave: false,
+  saveUninitialized: false,
+  cookie : {maxAge: 60 * 60 * 1000}
+}))
+app.use(passport.session())
+
 const { MongoClient, ObjectId } = require('mongodb')
 
 let db
@@ -103,6 +116,67 @@ app.get('/about', (요청, 응답) => {
 
    await db.collection('post').deleteOne({_id: new ObjectId(요청.query.docid)})
    응답.send('삭제완료')
-   
+
   }) 
 
+  app.get('/list/:id', async(요청, 응답) => {
+    // 1번~ 5번글을 찾아서 result변수에 저장
+    let result = await db.collection('post').find().skip((요청.params.id - 1) * 5).limit(5).toArray()
+    // console.log(result[0].title)
+
+    응답.render('list.ejs',{ 글목록 : result})
+  }) 
+
+  app.get('/list/next/:id', async(요청, 응답) => {
+    // 1번~ 5번글을 찾아서 result변수에 저장
+    let result = await db.collection('post').find({_id : {$gt : new ObjectId (요청.params.id)}}).limit(5).toArray()
+    // console.log(result[0].title)
+    응답.render('list.ejs',{ 글목록 : result})
+  }) 
+
+  passport.use(new LocalStrategy(async (입력한아이디, 입력한비번, cb) => {
+    let result = await db.collection('user').findOne({ username : 입력한아이디})
+    if (!result) {
+      return cb(null, false, { message: '아이디 DB에 없음' })
+    }
+    if (result.password == 입력한비번) {
+      return cb(null, result)
+    } else {
+      return cb(null, false, { message: '비번불일치' });
+    }
+  }))
+  
+
+
+  passport.serializeUser((user, done) => {
+    process.nextTick(() => {
+      done(null, { id: user._id, username: user.username })
+    })
+  })
+
+  passport.deserializeUser(async(user, done) => {
+    let result = await db.collection('user').findOne({_id: new ObjectId(user.id)})
+    delete result.password
+    process.nextTick(() => {
+      done(null, user )
+    })
+  })
+
+  app.get('/login', async(요청, 응답) => {
+    console.log(요청.user)
+    응답.render('login.ejs')
+  }) 
+
+  app.post('/login', async(요청, 응답) => {
+
+    passport.authenticate('local',(error, user, info) =>{
+      if(error) return 응답.status(500).json(error)
+      if(!user) return 응답.status(401).json(info.message)
+      요청.logIn(user, ()=>{
+        if(err) return next (err)
+        응답.redirect('/')
+      })
+    })(요청,응답,next)
+
+    응답.render('login.ejs')
+  }) 
